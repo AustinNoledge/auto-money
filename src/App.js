@@ -1,6 +1,8 @@
 import React from 'react'
 import OverlapHoldings from './components/OverlapHoldings'
 import StockDetails from './components/StockDetails'
+import Portfolio from './components/Portfolio'
+import SectorPerformance from './components/SectorPerformance'
 
 const App = () => {
 
@@ -8,6 +10,8 @@ const App = () => {
     <div className='grid-container'>
       <OverlapHoldings />
       <StockDetails />
+      <Portfolio />
+      <SectorPerformance />
     </div>
   )
 }

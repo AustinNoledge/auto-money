@@ -18,6 +18,10 @@ const StockDetails = () => {
     return (
         <div className="stock-details">
             <h1>Stock Details</h1>
+            <form>
+                <input size={10} />
+                <button>Query</button>
+            </form>
             <table>
                 <tbody>
                     <OneLineStock symbol={watchResult.symbol}

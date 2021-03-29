@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import overlapResultsService from '../services/overlapResults'
+import scraperService from '../services/swingTradeBotScraper'
 import StoredCombination from './StoredCombination'
 
 const OverlapHoldings = () => {
     const [ overlapResult, setOverlapResult ] = useState([])
+    const [ queryMode, setQueryMode ] = useState('')
     const [ firstQuery, setFirstQuery ] = useState('')
     const [ secondQuery, setSecondQuery ] = useState('')
 
@@ -18,23 +20,36 @@ const OverlapHoldings = () => {
 
     const addOverlapResult = (event) => {
         event.preventDefault()
-        const newOverlapResult = {
-            fundOne: firstQuery,
-            fundTwo: secondQuery,
-            overlap:[
-                'Ticker#1',
-                'Ticker#2'
-            ],
-            expand: false
+        if (queryMode === '2') {
+            scraperService
+                .getOverlapHoldings(firstQuery, secondQuery)
+                .then(holdings => {
+                    console.log(holdings);
+                    const newOverlapResult = {
+                        fundOne: firstQuery,
+                        fundTwo: secondQuery,
+                        overlap: holdings,
+                        expand: false
+                    }
+                    overlapResultsService
+                        .create(newOverlapResult)
+                        .then(response => {
+                            setOverlapResult(overlapResult.concat(response))
+                            setFirstQuery('')
+                            setSecondQuery('')
+                        })
+                        .catch(error => console.log(error))
+                })
+                .catch(error => console.log(error))
+        } else if (queryMode === '1') {
+
+        } else if (queryMode === '1b') {
+
+        } else if (queryMode === '3') {
+
+        } else {
+            throw new Error('Query mode error')
         }
-        overlapResultsService
-            .create(newOverlapResult)
-            .then(response => {
-                setOverlapResult(overlapResult.concat(response))
-                setFirstQuery('')
-                setSecondQuery('')
-            })
-            .catch(error => console.log(`fail to create overlapResult with error ${error}`))
     }
 
     const expandOrCollapse = (id) => {
@@ -75,6 +90,13 @@ const OverlapHoldings = () => {
             <h1>Overlap Holdings</h1>
 
             <form onSubmit={addOverlapResult}>
+                <select onChange={event => setQueryMode(event.target.value)}>
+                    <option value='2'>两支重叠</option>
+                    <option value='3'>三支以上</option>
+                    <option value='1'>单支持仓</option>
+                    <option value='1b'>反向查询</option>
+                </select>
+                <br></br>
                 <input size={10} value={firstQuery} onChange={event => setFirstQuery(event.target.value.toUpperCase())} />
                 AND
                 <input size={10} value={secondQuery} onChange={event => setSecondQuery(event.target.value.toUpperCase())} />
