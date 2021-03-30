@@ -1,0 +1,2 @@
+.grid-container{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:1fr 1fr;grid-gap:0 0;gap:0 0;grid-template-areas:"sector-performance overlap-holdings stock-details" "sector-performance portfolio stock-details"}.sector-performance{grid-area:sector-performance}.overlap-holdings{grid-area:overlap-holdings}.stock-details{grid-area:stock-details}.portfolio{grid-area:portfolio}#root{font-family:"Raleway",sans-serif}.red{color:red}.green{color:#20b2aa}td{padding:8px}
+/*# sourceMappingURL=main.0bb96225.chunk.css.map */

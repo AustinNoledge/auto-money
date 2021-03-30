@@ -12,6 +12,10 @@
 .stock-details { grid-area: stock-details; }
 .portfolio { grid-area: portfolio; }
 
+#root {
+  font-family: "Raleway", sans-serif;
+}
+
 .red {
   color: red;
 }
