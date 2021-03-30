@@ -2,8 +2,6 @@ import React from 'react'
 
 const Technical = ({technical}) => {
 
-    console.log(technical);
-
     if (!technical) {
         return (<tr></tr>)
     }

@@ -9,7 +9,7 @@ const StoredCombination = ({combination, expandOrCollapse, remove}) => {
             <>
                 <tr>
                     <td>
-                        {`${combination.fundOne}-${combination.fundTwo}`}
+                        {combination.fundName}
                     </td>
                     <td>
                         <button onClick={expandOrCollapse}>
@@ -34,7 +34,7 @@ const StoredCombination = ({combination, expandOrCollapse, remove}) => {
             <>
                 <tr>
                     <td>
-                        {`${combination.fundOne}-${combination.fundTwo}`}
+                        {combination.fundName}
                     </td>
                     <td>
                         <button onClick={expandOrCollapse}>

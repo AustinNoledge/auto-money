@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:3001/api/watchResult'
+const baseUrl = '/api/watchResult'
 
 const getOne = () => {
     return axios.get(baseUrl).then(response => response.data)

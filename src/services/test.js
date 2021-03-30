@@ -1,14 +1,9 @@
 const axios = require('axios')
-const cheerio = require('cheerio')
 
-const baseUrl = 'https://swingtradebot.com/'
-const one = 'ARKK'
-const two = 'VUG'
-axios.get(`${baseUrl}/etf-comparison/${one}-vs-${two}`)
+const baseUrl = 'https://financialmodelingprep.com'
+const apikey  = '435994ab89b96b3e3bfbf6d848d2bc06'
+
+axios.get(`${baseUrl}/api/v3/mutual-fund-holder/TSLA?apikey=${apikey}`)
     .then(response => {
-        let $ = cheerio.load(response.data.toString())
-        let table = $('#main-content > div.row > div > div:nth-child(6) > div > div > div.card-body > div > table > tbody')
-            .find('a').toArray()
-        table = table.map(each => $(each).text())
-        console.log(table);
+        console.log(response.data);
     })

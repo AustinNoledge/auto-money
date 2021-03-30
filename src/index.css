@@ -4,13 +4,13 @@
   grid-template-rows: 1fr 1fr;
   gap: 0px 0px;
   grid-template-areas:
-    "overlap-holdings stock-details portfolio"
-    "overlap-holdings stock-details sector-performance";
+    "sector-performance overlap-holdings stock-details"
+    "sector-performance portfolio stock-details";
 }
+.sector-performance { grid-area: sector-performance; }
 .overlap-holdings { grid-area: overlap-holdings; }
 .stock-details { grid-area: stock-details; }
 .portfolio { grid-area: portfolio; }
-.sector-performance { grid-area: sector-performance; }
 
 td {
   padding: 8px;

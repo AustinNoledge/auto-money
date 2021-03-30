@@ -1,18 +1,18 @@
 GET http://localhost:3001/api/overlapResult
 
 ###
-GET http://localhost:3001/api/overlapResult/3
+GET http://localhost:3001/api/overlapResult/unknown
 
 ###
 POST http://localhost:3001/api/overlapResult
 Content-Type: application/json
 
 {
-    "fundOne": "TEST",
-    "fundTwo": "MIDDLEWARE",
+    "fundName": "TEST-ANOTHER",
     "overlap": [
         "Ticker#10",
         "Ticker#20"
     ],
-    "expand": false
+    "expand": false,
+    "queryMode": "2"
 }
