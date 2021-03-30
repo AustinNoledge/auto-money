@@ -37,16 +37,16 @@ const StockDetails = () => {
                 <select onChange={event => setWatchMode(event.target.value)}>
                     <option value={0} selected>General Info</option>
                     <option value={1}>Financial Ratios</option>
-                    <option value={2}>Technical Indicators未完成</option>
-                    <option value={3}>Patterns Recognition未完成</option>
+                    <option value={2} disabled>Technical Indicators未完成</option>
+                    <option value={3} disabled>Patterns Recognition未完成</option>
                 </select>
                 <tbody style={{tableLayout:'fixed', display:'block', height:'35vh', width:'30vw', overflowY:'scroll'}}>
-                    {Object.keys(watchResult[watchMode]).map(eachKey => {
+                    {Object.keys(watchResult[(watchResult.length!==1)?watchMode:0]).map(eachKey => {
                         if (eachKey !== 'pass') {
                             return (
                                 <tr key={eachKey}>
                                     <td>{eachKey}</td>
-                                    <td style={{textAlign: 'right', width: '100%'}}>{watchResult[watchMode][eachKey]}</td>
+                                    <td style={{textAlign: 'right', width: '100%'}}>{watchResult[(watchResult.length!==1)?watchMode:0][eachKey]}</td>
                                 </tr>
                             )
                         }
