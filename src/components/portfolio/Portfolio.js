@@ -7,7 +7,7 @@ const Portfolio = () => {
     return (
         <div className='portfolio'>
             <h1>Portfolio</h1>
-            <h4>施工</h4>
+            <h1>正在施工</h1>
         </div>
     )
 }

@@ -1,23 +1,28 @@
 import React, { useState } from 'react'
 import financialService from '../../services/financialModelingPrepAPI'
-import OneLineStock from '../overlap-holdings/OneLineStock'
-import Fundamental from './Fundamental'
-import Technical from './Technical'
 
 const StockDetails = () => {
     const [ watchResult, setWatchResult ] = useState([{'pass': 'pass'}])
     const [ queryStock, setQueryStock ] = useState('')
+    const [ watchMode, setWatchMode ] = useState(0)
 
     const changeWatchResult = (event) => {
         event.preventDefault()
-        financialService
-            .getQuote(queryStock)
-            .then(response => {
-                setWatchResult(response)
-            })
-            .catch(error => {
-                console.log(`getQuote failed with error ${error}`);
-            })
+        const methods = [financialService.getQuote, financialService.getRatios]
+        const promises= []
+        const results = []
+        methods.forEach(method => {
+            promises.push(
+                method(queryStock)
+                    .then(response => {
+                        results.push(response)
+                    })
+            )
+        })
+        Promise.all(promises).then(() => {
+            console.log(results);
+            setWatchResult(results)
+        })
     }
 
     return (
@@ -29,18 +34,19 @@ const StockDetails = () => {
             </form>
 
             <table>
-                <thead>
-                    <tr>
-                        <th>General Info</th>
-                    </tr>
-                </thead>
-                <tbody style={{tableLayout:'fixed', display:'block', height:'30vh', width:'22vw', overflowY:'scroll'}}>
-                    {Object.keys(watchResult[0]).map(eachKey => {
+                <select onChange={event => setWatchMode(event.target.value)}>
+                    <option value={0} selected>General Info</option>
+                    <option value={1}>Financial Ratios</option>
+                    <option value={2}>Technical Indicators未完成</option>
+                    <option value={3}>Patterns Recognition未完成</option>
+                </select>
+                <tbody style={{tableLayout:'fixed', display:'block', height:'35vh', width:'30vw', overflowY:'scroll'}}>
+                    {Object.keys(watchResult[watchMode]).map(eachKey => {
                         if (eachKey !== 'pass') {
                             return (
                                 <tr key={eachKey}>
                                     <td>{eachKey}</td>
-                                    <td style={{textAlign: 'right', width: '100%'}}>{watchResult[0][eachKey]}</td>
+                                    <td style={{textAlign: 'right', width: '100%'}}>{watchResult[watchMode][eachKey]}</td>
                                 </tr>
                             )
                         }

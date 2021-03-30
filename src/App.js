@@ -8,7 +8,7 @@ const App = () => {
 
   return (
     <div className='grid-container'>
-      
+      <SectorPerformance />
       <OverlapHoldings />
       <StockDetails />
       <Portfolio />

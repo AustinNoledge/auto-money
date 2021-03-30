@@ -22,17 +22,29 @@ const getETFHolders = (symbol) => {
 
 const getQuote = (symbol) => {
     return axios.get(`${baseUrl}/api/v3/quote/${symbol}?apikey=${apikey}`)
-        .then(response => response.data.map(each => {
-            return ({
-                symbol:each.symbol,
-                price:each.price, change:each.change, volume:each.volume,
-                dayLow: each.dayLow, dayHigh: each.dayHigh
+        .then(response => {
+            const {name, changesPercentage, priveAvg50, priceAvg200, 
+                exchange, earningsAnnouncement, timestamp, ...data} = response.data[0]
+            return data
+        })
+}
+
+const getRatios = (symbol) => {
+                      
+    return axios.get(`${baseUrl}/api/v3/ratios/${symbol}?period=quarter&limit=1&apikey=${apikey}`)
+        .then(response => {
+            Object.keys(response.data[0]).forEach(each => {
+                let data = response.data[0][each]
+                if ((typeof data) === 'number') {
+                    response.data[0][each] = Math.round(data*10000)/10000
+                }
             })
-        }))
+            return response.data[0]
+        })
 }
 
 export default {
     getSectorsPerformance,
     getETFHoldings, getETFHolders,
-    getQuote
+    getQuote, getRatios
 }

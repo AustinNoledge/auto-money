@@ -12,6 +12,14 @@
 .stock-details { grid-area: stock-details; }
 .portfolio { grid-area: portfolio; }
 
+.red {
+  color: red;
+}
+
+.green {
+  color: lightseagreen;
+}
+
 td {
   padding: 8px;
 }

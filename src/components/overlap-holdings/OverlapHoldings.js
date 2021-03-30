@@ -69,8 +69,8 @@ const OverlapHoldings = () => {
                                     }
                                 }}>+</button>
                                 <select onChange={event => setQueryMode(event.target.value)}>
-                                    <option value='ets' defaultValue>正向查询持仓</option>
-                                    <option value='ste'>逆向查询机构</option>
+                                    <option value='ets' selected={queryMode==='ets'}>正向查询持仓</option>
+                                    <option value='ste' selected={queryMode==='ste'}>逆向查询机构</option>
                                 </select>
                                 <button type='submit'>Query</button>
                                 <br></br>

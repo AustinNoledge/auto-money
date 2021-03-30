@@ -22,8 +22,10 @@ const SectorPerformance = () => {
                     {sectors.map((each, index) => {
                         return (
                             <tr key={index}>
-                                <td>{each.sector}</td>
-                                <td style={{textAlign:'right'}}>{each.changesPercentage}</td>
+                                <td
+                                className={(each.changesPercentage[0]==='-')?'red':'green'}>{each.sector}</td>
+                                <td style={{textAlign:'right'}}
+                                className={(each.changesPercentage[0]==='-')?'red':'green'}>{each.changesPercentage}</td>
                             </tr>
                         )
                     })}
