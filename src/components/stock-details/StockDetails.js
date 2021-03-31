@@ -55,7 +55,7 @@ const StockDetails = () => {
                                     <td>{eachKey}</td>
                                     <td style={{textAlign: 'right', width: '100%'}}
                                     className={(/^ema/.test(eachKey))
-                                        ? ((watchResult[(watchResult.length!==1)?watchMode:0][eachKey] > watchResult[(watchResult.length!==1)?watchMode:0]['price']) ? 'green' : 'red')
+                                        ? ((watchResult[(watchResult.length!==1)?watchMode:0][eachKey] < watchResult[(watchResult.length!==1)?watchMode:0]['price']) ? 'green' : 'red')
                                         : ''}>
                                         {showHelper(watchResult[(watchResult.length!==1)?watchMode:0][eachKey])}
                                     </td>
