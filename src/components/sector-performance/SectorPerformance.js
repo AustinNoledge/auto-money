@@ -18,7 +18,7 @@ const SectorPerformance = () => {
         <div className='sector-performance'>
             <h1>Sectors Performance</h1>
             <table>
-                <tbody style={{display:'block', height:'100vh', overflowY:'scroll'}}>
+                <tbody style={{display:'block', height:'85vh', overflowY:'scroll'}}>
                     {sectors.map((each, index) => {
                         return (
                             <tr key={index}>
